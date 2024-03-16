@@ -4,16 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
 import android.view.accessibility.AccessibilityManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private RadioGroup radioGroup;
     private ImageView imageView;
+    private Button changeImageBtn;
+    private EditText imageEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +30,37 @@ public class MainActivity extends AppCompatActivity {
 
         radioGroup = (RadioGroup) findViewById(R.id.imageRadioGroup);
         imageView = (ImageView) findViewById(R.id.imageView);
+        imageEditText = (EditText) findViewById(R.id.imageEditText);
+        changeImageBtn = (Button) findViewById(R.id.changeImageBtn);
+
+        imageEditText.addTextChangedListener(
+                new TextWatcher() {
+                    private String lastValue = "";
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        String fullText = s.toString();
+
+                        if(fullText.equals("imageone"))
+                            imageView.setImageResource(R.drawable.ic_baseline_5k_plus_24);
+                        else if(fullText.equals("imagetwo"))
+                            imageView.setImageResource(R.drawable.ic_baseline_5mp_24);
+                        else if(fullText.equals("imagethree"))
+                            imageView.setImageResource(R.drawable.ic_baseline_5k_24);
+                        else
+                            imageView.setImageResource(R.drawable.ic_baseline_5k_24);
+                    }
+                }
+        );
 
         radioGroup.setOnCheckedChangeListener(
                 new RadioGroup.OnCheckedChangeListener() {
