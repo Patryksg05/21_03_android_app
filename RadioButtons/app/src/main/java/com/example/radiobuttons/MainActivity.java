@@ -2,7 +2,9 @@ package com.example.radiobuttons;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +18,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     private RadioGroup radioGroup;
@@ -23,10 +28,17 @@ public class MainActivity extends AppCompatActivity {
     private Button changeImageBtn;
     private EditText imageEditText;
 
+    private ArrayList<Integer> images;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        images = new ArrayList<Integer>(3);
+        images.add(R.drawable.ic_baseline_5k_24);
+        images.add(R.drawable.ic_baseline_5mp_24);
+        images.add(R.drawable.ic_baseline_5k_plus_24);
 
         radioGroup = (RadioGroup) findViewById(R.id.imageRadioGroup);
         imageView = (ImageView) findViewById(R.id.imageView);
@@ -87,6 +99,17 @@ public class MainActivity extends AppCompatActivity {
 //                                Toast.makeText(MainActivity.this, rb.getText(),
 //                                        Toast.LENGTH_SHORT).show();
                         }
+                    }
+                }
+        );
+
+        changeImageBtn.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Random random = new Random();
+                        int index = random.nextInt((2));
+                        imageView.setImageResource(images.get(index));
                     }
                 }
         );
