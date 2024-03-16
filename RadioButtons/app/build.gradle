@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 'com.example.radiobuttons'
-    compileSdk 32
+    compileSdk 34 // at least 33
 
     defaultConfig {
         applicationId "com.example.radiobuttons"
         minSdk 21
-        targetSdk 32
+        targetSdk 34 // at least 33, for march 2023
         versionCode 1
         versionName "1.0"
 
