@@ -41,6 +41,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
         );
 
+        radioGroup.setOnCheckedChangeListener(
+                new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                        RadioButton rb = (RadioButton) findViewById(i);
+                        int idRadioBtn = radioGroup.getCheckedRadioButtonId();
+                        String contentRadioBtn = (String) rb.getText();
+                        Toast.makeText(MainActivity.this,
+                                contentRadioBtn + " " +
+                                        "" + Integer.toString(idRadioBtn),
+                                             Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
         newRadioBtnEditText.addTextChangedListener(
                 new TextWatcher() {
                     @Override
